@@ -33,7 +33,7 @@ jobs:
       - name: Show commit message
         env:
           COMMIT_MESSAGES: ${{toJson(github.event.commits.*.message )}}
-        run: echo ${{ join('$COMMIT_MESSAGES')}}
+        run: echo join("$COMMIT_MESSAGES")
       - name: test message for skip
         env:
           COMMIT_MESSAGES: ${{toJson(github.event.commits.*.message )}}
