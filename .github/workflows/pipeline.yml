@@ -31,11 +31,11 @@ jobs:
       #   env:
       #     FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
       - name: Show commit message
-        run: echo "${{github.events.head_commit.message}}"
+        run: echo "${{github.events.commits.*.message[0]}}"
       - name: test message for skip
         env:
           COMMIT_MESSAGES: ${{toJson(github.event.commits.*.message )}}
-        if: ${{contains('$COMMIT_MESSAGES[0]', '#skip' )}}
+        if: contains('${{fromJson('$COMMIT_MESSAGES')[0]}}', '#skip' )
         run: echo "$join(COMMIT_MESSAGES)"
   version_bump:
     needs: [simple_deployment_pipeline]
