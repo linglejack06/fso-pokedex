@@ -30,7 +30,7 @@ jobs:
       #   run: flyctl deploy --remote-only
       #   env:
       #     FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-      # - name: Show commit message
+      - name: Show commit message
         env:
           COMMIT_MESSAGES: ${{toJson(github.event.commits.*.message )}}
         run: echo ${{ join('$COMMIT_MESSAGES')}}
