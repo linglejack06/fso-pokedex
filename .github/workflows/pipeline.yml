@@ -33,7 +33,8 @@ jobs:
       - name: Show commit message
         env:
           COMMIT_MESSAGES: ${{toJson(github.event.commits.*.message )}}
-        if: ${{contains(toJson(github.event.commits.*.message)[0], '#skip' )}}
+        run: echo "$COMMIT_MESSAGES[0]"
+        if: ${{contains('$COMMIT_MESSAGES[0]', '#skip' )}}
         run: echo "$COMMIT_MESSAGES"
   version_bump:
     needs: [simple_deployment_pipeline]
