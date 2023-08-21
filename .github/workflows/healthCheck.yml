@@ -1,0 +1,13 @@
+name: Health Check
+
+on:
+  schedule:
+    - cron: "30 16 * * *"
+jobs:
+  check_health:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check frontend URL
+        uses: jtalk/url-health-check-action@v3
+        with:
+          url: https://broken-dawn-2911.fly.dev/
